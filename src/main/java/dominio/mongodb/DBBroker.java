@@ -1,13 +1,22 @@
 package dominio.mongodb;
 
+import org.bson.Document;
+
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 public class DBBroker {
 
 	MongoClient cliente = null;
 	MongoDatabase bd = null;
+	
+	MongoCollection<Document> bdUsuarios;
+	MongoCursor<Document> elementos;
+	Document documento;
+	
 
 	public DBBroker() {
 
@@ -25,13 +34,31 @@ public class DBBroker {
 	}
 
 	public boolean existeEmail(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean existe=false;
+		bd=cliente.getDatabase("avengerslive");
+		bdUsuarios = bd.getCollection("usuarios");
+		elementos = bdUsuarios.find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("email").toString().equalsIgnoreCase(email)) {
+				existe = true;
+			}
+		}
+		return existe;
 	}
 
 	public boolean existeContraseña(String contraseña) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean existe=false;
+		bd=cliente.getDatabase("avengerslive");
+		bdUsuarios = bd.getCollection("usuarios");
+		elementos = bdUsuarios.find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get("contraseña").toString().equalsIgnoreCase(contraseña)) {
+				existe = true;
+			}
+		}
+		return existe;
 	}
 
 	public boolean login(Empleado e) {
