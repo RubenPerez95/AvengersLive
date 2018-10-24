@@ -3,6 +3,7 @@ package dominio.mongodb;
 public class Empleado {
 
 		private String email, contrasena, contrasenaOriginal, nombre, rol;
+		DAOempleado dao;
 	
 	    public Empleado(){
 	    	
@@ -27,6 +28,18 @@ public class Empleado {
 	    	} catch (Exception e1) {
 	    		e1.printStackTrace();
 	    	}
+	    }
+	    
+	    public boolean credencialesCorrectas(String emailEmpleado, String contrasenaIntroducida) {
+	    	String contrasenaReal = dao.contrasenaDeEmpleado(emailEmpleado);
+	    	if(contrasenaReal == contrasenaIntroducida)
+	    		return true;    	
+	    	
+	    	return false;
+	    }
+	    
+	    public String rolEmpleado(String emailEmpleado) {
+	    	return dao.rolEmpleado(emailEmpleado);
 	    }
 
 		
