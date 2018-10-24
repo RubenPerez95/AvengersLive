@@ -1,5 +1,9 @@
 package dominio.mongodb;
 
+import org.bson.Document;
+
+import com.mongodb.client.MongoCollection;
+
 public class DAOempleado {
 
 	DBBroker db;
@@ -7,6 +11,20 @@ public class DAOempleado {
 	public DAOempleado() {
 		db = new DBBroker();
 	}
+
+	/******************************LYDIA************************************/
+
+	public String contrasenaDeEmpleado(String emailEmpleado) {
+		Document documentoEmail = null;
+		String contrasenaEmpleado = null;
+		MongoCollection<Document> coleccion= db.devolverColeccion("Empleados");
+		documentoEmail = db.devolverDocumento(coleccion, "email", emailEmpleado);
+		if(documentoEmail != null)
+			contrasenaEmpleado = documentoEmail.get("contrasena").toString();
+		return contrasenaEmpleado;
+	}
+
+	/*****************************************ANA**************************************/
 
 	public boolean crearEmpleado(Empleado p) {
 		return db.crearEmpleado(p);
@@ -16,8 +34,8 @@ public class DAOempleado {
 		return db.existeEmail(email);
 	}
 
-	public boolean existeContraseña(String contraseña) {
-		return db.existeContraseña(contraseña);
+	public boolean existeContrasena(String contrasena) {
+		return db.existeContrasena(contrasena);
 	}
 
 	public boolean login(Empleado e) throws Exception {

@@ -27,6 +27,27 @@ public class DBBroker {
 		}	
 		bd = cliente.getDatabase("avengerslive");
 	}
+	/*************************************LYDIA****************************************/
+	
+	public MongoCollection<Document> devolverColeccion(String nombreColeccion) {
+		MongoCollection<Document> coleccion = bd.getCollection("nombreColeccion");
+		return coleccion;
+		
+	}
+	
+	public Document devolverDocumento(MongoCollection<Document> coleccion, String campo, String parametro) {
+		elementos = coleccion.find().iterator();
+		while(elementos.hasNext()) {
+			documento = elementos.next();
+			if(documento.get(campo).toString().equalsIgnoreCase(parametro))
+				return documento;
+		}
+		
+		return null;
+	}
+	
+	/*****************************************ANA*****************************************/
+	
 
 	public boolean crearEmpleado(Empleado p) {
 		// TODO Auto-generated method stub
@@ -47,14 +68,14 @@ public class DBBroker {
 		return existe;
 	}
 
-	public boolean existeContraseña(String contraseña) {
+	public boolean existeContrasena(String contrasena) {
 		boolean existe=false;
 		bd=cliente.getDatabase("avengerslive");
 		bdUsuarios = bd.getCollection("usuarios");
 		elementos = bdUsuarios.find().iterator();
 		while(elementos.hasNext()) {
 			documento = elementos.next();
-			if(documento.get("contraseña").toString().equalsIgnoreCase(contraseña)) {
+			if(documento.get("contraseña").toString().equalsIgnoreCase(contrasena)) {
 				existe = true;
 			}
 		}
@@ -80,5 +101,6 @@ public class DBBroker {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }
