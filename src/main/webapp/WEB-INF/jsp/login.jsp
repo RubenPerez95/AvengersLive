@@ -1,17 +1,21 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<script src=" https://code.jquery.com/jquery.js ">	
+<script src=" https://code.jquery.com/jquery.js ">
+	
 </script>
-<script src=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
+<script
+	src=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
+	
 </script>
-<link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta http-equiv="content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/estilos.css">
 
-<title>Home</title>
+<title>Login</title>
 </head>
 <body>
 
@@ -28,10 +32,7 @@
 					<a class="navbar-brand" href="#"><FONT COLOR="red">Avengers
 							Live</FONT></a>
 					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-
-
 					</ul>
-
 				</div>
 			</nav>
 		</div>
@@ -45,7 +46,6 @@
 		</div>
 
 		<div class="card card-container">
-
 			<p
 				style="align-content: center; margin: auto; display: table; font-size: 20px; color: grey;">Login</p>
 			<form action="login.htm" method="post" class="form-signin">
@@ -59,21 +59,13 @@
 					type="submit">Acceder</button>
 			</form>
 			<!-- /form -->
-			
-<div>
-				<ul>
-				 <li>Estado : <c:out value=" ${error}" /></li>
-		</ul>
 
-</div>
-			
+			<div>
+				<ul>
+					<li>Estado : <c:out value=" ${error}" /></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-
-
 </body>
 </html>

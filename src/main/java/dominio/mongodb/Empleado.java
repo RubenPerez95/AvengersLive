@@ -2,7 +2,7 @@ package dominio.mongodb;
 
 public class Empleado {
 
-	private String email, contrasena, nombre, rol;
+	private String dni, email, contrasena, nombre, rol;
 	DAOEmpleado dao = new DAOEmpleado();
 
 	public Empleado(){
@@ -11,6 +11,7 @@ public class Empleado {
 
 	public Empleado(String email, String contrasena) {
 		try {
+			this.setDni(dao.dniEmpleado(email));
 			this.email = email;
 			this.contrasena = contrasena;
 			this.nombre = dao.nombreEmpleado(email);
@@ -65,6 +66,14 @@ public class Empleado {
 		}
 		return size&&numeros&&mayuscula&&minuscula;
 	}*/
+	
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -97,6 +106,8 @@ public class Empleado {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+
+	
 
 
 
