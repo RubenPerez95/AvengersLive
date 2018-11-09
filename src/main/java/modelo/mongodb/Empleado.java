@@ -1,5 +1,7 @@
 package modelo.mongodb;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 public class Empleado {
 
 	private String dni, email, contrasena, nombre, rol;
@@ -10,32 +12,32 @@ public class Empleado {
 	}
 
 	public Empleado(String email, String contrasena) {
-			this.dni = dao.dniEmpleado(email);
-			this.email = email;
-			this.contrasena = contrasena;
-			this.nombre = dao.nombreEmpleado(email);
-			this.rol = dao.rolEmpleado(email);
+		this.dni = dao.dniEmpleado(email);
+		this.email = email;
+		this.contrasena = contrasena;
+		this.nombre = dao.nombreEmpleado(email);
+		this.rol = dao.rolEmpleado(email);
 	}
 
 	public boolean credencialesCorrectas(String emailEmpleado, String contrasenaIntroducida) {
-    	String contrasenaReal = dao.contrasenaDeEmpleado(emailEmpleado);
-    	if(contrasenaReal.equals(contrasenaIntroducida))
-    		return true;    	
-    	
-    	return false;
+		String contrasenaReal = dao.contrasenaDeEmpleado(emailEmpleado);
+		if(contrasenaReal.equals(contrasenaIntroducida))
+			return true;    	
+
+		return false;
 	}
 	public String rolEmpleado(String emailEmpleado) {
 		return dao.rolEmpleado(emailEmpleado);
 	}
-	
+
 	public boolean contrasenaCoincide(String contrasena1, String contrasena2) {
 		if(contrasena1.equals(contrasena2))
 			return true;
-		
+
 		return false;
 	}
-	public void cambiarContrasena(Empleado empleado, String contrasena) {
-		dao.cambiarContrasena(empleado, contrasena);
+	public void cambiarContrasena(String email, String contrasena) {
+		dao.cambiarContrasena(email, DigestUtils.md5Hex(contrasena));
 	}
 
 	public boolean requisitosPassword(String contrasenaNueva) {
@@ -57,7 +59,7 @@ public class Empleado {
 		}
 		return size && numeros && mayuscula && minuscula;
 	}
-	
+
 	private boolean esNumero(char n) {
 		return (n >= '0' && n <= '9');
 	}
@@ -73,11 +75,46 @@ public class Empleado {
 	private boolean esMinuscula(char n) {
 		if(n >= 'a' && n <= 'z')
 			return true;
-		
+
 		return false;
 	}
 
-	
+	public boolean recuperarContrasena(String emailEmpleado) {
+		@SuppressWarnings("unused")
+		EmailSender enviarEmail;
+		String contrasena;
+		if(!dao.existeEmpleado(emailEmpleado))
+			return false;
+		contrasena = generarContrasena();
+		try {
+			enviarEmail = new EmailSender("recuperar credenciales", emailEmpleado, contrasena);
+		}catch (Exception e){
+			System.out.println(e.getMessage());
+			return false;
+		}
+		cambiarContrasena(emailEmpleado, contrasena);
+		return true;
+	}
+
+	private String generarContrasena() {
+/*		Random aleatorio = new Random(System.currentTimeMillis());
+		String [] abecedarioMayusculas = {"A", "B", "C", "D", "E", "F", "G", "H","I", "J", "K", "L", "M",
+				"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+		String [] abecedarioMinusculas = {"a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m",
+				"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+		String contrasenaGenerada = abecedarioMayusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000))
+		+ abecedarioMinusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000)) + 
+		abecedarioMayusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000))
+		+ abecedarioMinusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000));*/
+		
+		String contrasenaAleatoria = GeneradorContrasena.getContrasenaAleatoria(
+				GeneradorContrasena.MINUSCULAS+
+				GeneradorContrasena.MAYUSCULAS+
+				GeneradorContrasena.NUMEROS,10);
+		
+		return contrasenaAleatoria;	
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -118,7 +155,7 @@ public class Empleado {
 		this.rol = rol;
 	}
 
-	
+
 
 
 
