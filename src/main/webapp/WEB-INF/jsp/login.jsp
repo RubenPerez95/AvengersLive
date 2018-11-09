@@ -52,11 +52,17 @@
 					type="text" name="inputEmail" class="form-control"
 					placeholder="Email" required autofocus> <input
 					type="password" name="inputPassword" class="form-control"
-					placeholder="Contraseña" required>				
+					placeholder="Contraseña" required>
 				<button class="btn btn-lg btn-primary btn-block btn-signin"
 					type="submit">Acceder</button>
 			</form>
-			<!-- /form -->
+
+			<form action="recuperarContrasena.htm" method="post">
+				<input class="btn btn-lg btn-danger btn-block" type="submit"
+					name="recuperarContrasena" value="¿Olvidaste tu contraseña?" />
+
+
+			</form>
 
 			<div>
 				<ul>
