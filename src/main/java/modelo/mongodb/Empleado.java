@@ -40,7 +40,7 @@ public class Empleado {
 		dao.cambiarContrasena(email, DigestUtils.md5Hex(contrasena));
 	}
 
-	public boolean requisitosPassword(String contrasenaNueva) {
+	public boolean requisitosContrasena(String contrasenaNueva) {
 		boolean size = false, numeros = false, minuscula = false, mayuscula = false;
 		if(contrasenaNueva.length() >= 8) {
 			size = true;
@@ -96,23 +96,8 @@ public class Empleado {
 		return true;
 	}
 
-	private String generarContrasena() {
-/*		Random aleatorio = new Random(System.currentTimeMillis());
-		String [] abecedarioMayusculas = {"A", "B", "C", "D", "E", "F", "G", "H","I", "J", "K", "L", "M",
-				"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-		String [] abecedarioMinusculas = {"a", "b", "c", "d", "e", "f", "g", "h","i", "j", "k", "l", "m",
-				"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-		String contrasenaGenerada = abecedarioMayusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000))
-		+ abecedarioMinusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000)) + 
-		abecedarioMayusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000))
-		+ abecedarioMinusculas[(int) Math.round(Math.random() * 26 )] + Integer.toString(aleatorio.nextInt(1000));*/
-		
-		String contrasenaAleatoria = GeneradorContrasena.getContrasenaAleatoria(
-				GeneradorContrasena.MINUSCULAS+
-				GeneradorContrasena.MAYUSCULAS+
-				GeneradorContrasena.NUMEROS,10);
-		
-		return contrasenaAleatoria;	
+	private String generarContrasena() {	
+		return GeneradorContrasena.getContrasenaAleatoria(10);	
 	}
 
 	public String getDni() {

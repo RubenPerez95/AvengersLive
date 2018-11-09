@@ -114,7 +114,7 @@ public class loginController {
 		contrasenaNueva2 = request.getParameter("inputContrasenaNueva2");
 		if(!empleado.credencialesCorrectas(email, contrasena))
 			mensaje = "Error al introducir tu contraseña actual";
-		else if(!empleado.requisitosPassword(contrasenaNueva1))
+		else if(!empleado.requisitosContrasena(contrasenaNueva1))
 			mensaje = "La nueva contraseña introducida debe contener al menos una mayúscula, una minúscula "
 					+ "un número y 8 caracteres";
 		else if(!empleado.contrasenaCoincide(contrasenaNueva1, contrasenaNueva2))
