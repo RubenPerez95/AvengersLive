@@ -53,7 +53,7 @@ public class loginController {
 					fich = listaFichajes.get(listaFichajes.size()-1);
 				}
 				estado = fich.get("estado").toString();
-				
+
 			}
 			model.addAttribute("email", empleado.getEmail());
 			model.addAttribute("estado", estado);
@@ -156,8 +156,6 @@ public class loginController {
 		return new ModelAndView("crearIncidencia");
 	} 
 
-
-
 	@RequestMapping(method = RequestMethod.POST, value = "registrarIncidencia.htm")
 	public ModelAndView registrarIncidencia(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {		
 		String idEmpleado,tipo,fechaInicio, fechaFin, comentario, mensajeEstado,mensaje;
@@ -178,20 +176,26 @@ public class loginController {
 		}
 		return new ModelAndView("home","mensaje",mensaje);
 	}
-	@RequestMapping(value = "EmplConlInc.htm", method = RequestMethod.POST)
-	public ModelAndView gestIncEmpl(HttpServletRequest request, ModelMap model)throws Exception{
-		List<Incidencia> listaIncidencias=new ArrayList();
-	    listaIncidencias =  incidencia.consultarIncidenciasPropias(empleado.getDni());
-	   
-	    model.addAttribute("incidencias", listaIncidencias);
-        
-		return new ModelAndView("GestIncEmpl", "incidencias", listaIncidencias);
+	
+	@RequestMapping(value = "incidenciasGestorUsuario.htm", method = RequestMethod.POST)
+	public ModelAndView incidenciasGestorUsuario(HttpServletRequest request, ModelMap model)throws Exception{
+		List<Incidencia> listaIncidenciasUsuario=new ArrayList();
+		List<Incidencia> listaIncidenciasGestor=new ArrayList();
+		listaIncidenciasUsuario =  incidencia.consultarIncidenciasPropias(empleado.getDni());
+		listaIncidenciasGestor =  incidencia.consultarIncidenciasGestor();
+		model.addAttribute("incidenciasUsuario", listaIncidenciasUsuario);
+		model.addAttribute("incidenciasGestor", listaIncidenciasGestor);
+		if(empleado.getRol().equals("gestor"))
+			return new ModelAndView("consultaIncidenciasGestor", "incidencias", listaIncidenciasGestor);
+			
+		else
+			return new ModelAndView("consultaIncidenciasUsuario", "incidencias", listaIncidenciasUsuario);
 	}
-	
-	
+
+
 	@RequestMapping(method = RequestMethod.POST, value = "Incidencias.htm")
 	public ModelAndView consulIncidencia(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Exception {		
-	    
+
 		String id = request.getParameter("idEmpleado");
 		String tipo = request.getParameter("tipo");
 		String men = request.getParameter("mensaje");
@@ -206,15 +210,4 @@ public class loginController {
 		model.addAttribute("comentario", comentario);
 		return new ModelAndView("Incidencias");
 	}
-
-	@RequestMapping(value = "GestConlInc.htm", method = RequestMethod.POST)
-	public ModelAndView gestConInc(HttpServletRequest request, ModelMap model)throws Exception{
-		List<Incidencia> listaIncidencias=new ArrayList();
-	    listaIncidencias =  incidencia.consultarIncidenciasGestor();
-	   
-	    model.addAttribute("incidencias", listaIncidencias);
-        
-		return new ModelAndView("GestIncGest", "incidencias", listaIncidencias);
-	}
-
 }

@@ -20,7 +20,7 @@
 </head>
 <style>
 html, body {
-	height: 105%;
+	height: auto;
 	width: 100%;
 	margin: 0;
 	display: flex;
@@ -152,7 +152,7 @@ html, body {
 	</form>
 	</p>
 	<p>
-		<form action="GestConlInc.htm" method="post" align="center">
+		<form action="incidenciasGestorUsuario.htm" method="post" align="center">
 		<input class="btn boton-personalizado" type="submit"
 			name="ConsultarIncidencia" value="Consultar incidencias" />
 	</form>

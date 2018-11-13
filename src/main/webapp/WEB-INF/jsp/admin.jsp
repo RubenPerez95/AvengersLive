@@ -20,7 +20,7 @@
 </head>
 <style>
 html, body {
-	height: 105%;
+	height: auto;
 	width: 100%;
 	margin: 0;
 	display: flex;

@@ -29,11 +29,8 @@
 				<prop key="registrarIncidencia.htm">loginController</prop>
 				<prop key="recuperarContrasena.htm">loginController</prop>
 				<prop key="enviarPeticionContrasena.htm">loginController</prop>
-				<prop key="EmplConlInc.htm">loginController</prop>
-                <prop key="Incidencias.htm">loginController</prop>
-				<prop key="GestConlInc.htm">loginController</prop>
-				
-				
+				<prop key="incidenciasGestorUsuario.htm">loginController</prop>
+                <prop key="Incidencias.htm">loginController</prop>				
 			</props>
 		</property>
 	</bean>
