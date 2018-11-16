@@ -28,27 +28,6 @@ html, body {
 	flex-wrap: wrap;
 }
 
-.boton-personalizado::before, ..boton-personalizado::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	bottom: 0;
-	left: 0;
-	z-index: 1;
-	transition: all 0.3s;
-	border: 1px solid rgba(255, 255, 255, 0.5);
-	color: black;
-}
-
-.boton-personalizado:hover::after, .boton-personalizado:hover::before {
-	left: 96px;
-	width: 64px;
-	color: black;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-}
-
 .boton-personalizado {
 	text-decoration: none;
 	font-weight: 600;
@@ -153,10 +132,17 @@ html, body {
 		</form>
 		</p>
 
+		<p>
+		<form action="incidenciasGestorUsuario.htm" method="post"
+			align="center">
+			<input class="btn boton-personalizado" type="submit"
+				name="ConsultarIncidencia" value="Consultar incidencias" />
+		</form>
+		</p>
+
 
 
 		<br></br>
-
 		<p>
 		<h4 align="center">
 			Estado:

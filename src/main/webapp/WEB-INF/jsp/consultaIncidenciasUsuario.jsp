@@ -14,7 +14,7 @@
 	href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta http-equiv="content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/estilos.css">
-<title>Consulta</title>
+<title>Consulta Incidencias Usuario</title>
 </head>
 <style>
 html, body {
@@ -52,10 +52,68 @@ table {
 	height: 150px;
 	text-align: center;
 }
+
+.boton-personalizado::before, ..boton-personalizado::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+	z-index: 1;
+	transition: all 0.3s;
+	border: 1px solid rgba(255, 255, 255, 0.5);
+	color: black;
+}
+
+.boton-personalizado:hover::after, .boton-personalizado:hover::before {
+	left: 96px;
+	width: 64px;
+	color: black;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.boton-personalizado {
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: #FFD27D;
+	border-color: #d8d8d8;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 35px;
+}
+
+.boton-salir {
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: red;
+	border-color: #d8d8d8;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 35px;
+}
 </style>
 <body>
 	<p>
 	<h2 align="center">Listado de incidencias</h2>
+	</p>
+	
+	<p align="center">
+		<b>*Seleccione una fila haciendo click sobre ella y después, pulse el botón "Consultar" 
+		para mostrar la información más detallada </b>
 	</p>
 
 	<form name="normal" method="post">
@@ -99,8 +157,13 @@ table {
 
 
 		<input type="submit" value="consultar" id="modificar"
-			onClick="verIncidencia()" class="EstiloBoton"></input>
+			onClick="verIncidencia()" class="btn boton-personalizado"></input>
 
+		</p>
+
+		<p>
+			<input class="btn boton-salir" type="button" value="Atrás"
+				onclick="history.back()">
 		</p>
 
 	</form>
@@ -132,7 +195,7 @@ table {
 	function verIncidencia() {
 		if (seleccionado == null) {
 			alert("Seleccione una fila haciendo click sobre ella");
-			document.normal.action = "EmplConlInc.htm";
+			document.normal.action = "incidenciasGestorUsuario.htm";
 
 		}
 		var f = seleccionado.getElementsByTagName('td');

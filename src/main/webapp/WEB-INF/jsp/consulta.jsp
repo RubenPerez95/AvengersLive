@@ -13,42 +13,60 @@
 	href=" https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <meta http-equiv="content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="css/estilos.css">
-<title>Consulta</title>
+<title>Consulta Fichajes</title>
 </head>
 <style>
-	html,body {
-	  height: 100%;
-	  width: 100%;
-	  margin: 0;
-	  display: flex;
-	  flex-direction: column;
-	  flex-wrap: wrap;	  
-	}
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
 
+.boton-salir {
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: red;
+	border-color: #d8d8d8;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 35px;
+}
 
-	.boton-salir{
-		text-decoration:none;
-		font-weight: 600;
-		font-size: 20px;
-		color: white;
-		padding-top:15px;
-		padding-bottom:15px;
-		padding-left:40px;
-		padding-right:40px;
-		background-color:red;
-		border-color: #d8d8d8;
-		border-width: 3px;
-		border-style: solid;
-		border-radius:35px;	
-		}
+tr:hover {
+	background-color: #D5D5D5;
+}
 
-	tr:hover {background-color: #D5D5D5;}
-	table {
-		font-size: 15px;
-		width: 50%;
-		height: 150px;
-		text-align: center;
-	}
+table {
+	font-size: 15px;
+	width: 50%;
+	height: 150px;
+	text-align: center;
+}
+
+.boton-salir {
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background-color: red;
+	border-color: #d8d8d8;
+	border-width: 3px;
+	border-style: solid;
+	border-radius: 35px;
+}
 </style>
 <body>
 	<p>
@@ -56,7 +74,7 @@
 	</p>
 	<p>
 	<form action="consulta.htm" method="post">
-		<table align="center" border="1" width: 100%>
+		<table align="center" border="1"width: 100%>
 			<thead bgcolor="#FFFD86">
 				<tr>
 					<th>Fecha</th>
@@ -77,10 +95,11 @@
 		</table>
 	</form>
 	</p>
-	<!-- 
-	<form style="padding-left: 20px;" action="home.htm" method="post">
-		<input class="btn boton-salir" value="Atrás" type="submit" name="BtnSalir">
-	</form>
-	 -->
+
+	<p>
+		<input class="btn boton-salir" type="button" value="Atrás"
+			onclick="history.back()">
+	</p>
+
 </body>
 </html>
